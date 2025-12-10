@@ -3,110 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PyleaMUN General Assembly Study Guide</title>
+  <title>PyleaMUN Delegate Allocations</title>
   <style>
+    /* --- CSS FROM INDEX.HTML (HEADER STYLES) --- */
     :root {
       --bg: #E8EAE6;
-      --paper: #e0f7fa;
+      --paper: #fff;
       --ink: #333;
       --brand: #005b63;
       --accent: #00b4a0;
       --alert: #d32f2f;
-      --alert-bg: #ffcdd2;
     }
     html, body { margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     
-    /* Letterhead & Logo */
     .letterhead { display:flex; justify-content:space-between; align-items:center; background-color:#D6DBD2; border-bottom:2px solid #444; padding:10px 20px; min-height:100px; flex-wrap:wrap; }
     .address, .contact { width:30%; font-size:0.9rem; }
     .contact { display:flex; flex-direction:column; align-items:flex-end; }
     .logo-container { width:120px; text-align:center; }
-    
-    /* LOGO UPDATE: mix-blend-mode: multiply makes the white background transparent */
-    .logo { 
-      width:120px; 
-      height:auto; 
-      display:block; 
-      mix-blend-mode: multiply; 
-    }
-    
+    .logo { width:120px; height:auto; display:block; mix-blend-mode: multiply; }
     .letterhead a { color:#0066cc; text-decoration:none; }
 
-    main { padding: 2rem 1rem 4rem; max-width: 1100px; margin: 0 auto; }
-    h1 { text-align:center; color:var(--brand); margin-top:1rem; margin-bottom: 0.5rem; }
-    h2.subtitle { text-align:center; font-size: 1.1rem; color: #555; margin-bottom: 1.5rem; font-weight: normal; font-style: italic; }
+    /* --- NEW STYLES FOR DATA PRESENTATION --- */
+    main { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
     
-    .container { background: var(--paper); padding: 1.25rem; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
-
-    /* Controls */
-    .controls { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin: 1rem 0 1.25rem; }
-    button { border:none; border-radius:32px; padding:.65rem 1rem; font-size:0.95rem; cursor:pointer; background:var(--accent); color:#fff; }
-    button.secondary { background:#1e88e5; }
-    button.ghost { background:transparent; border:2px solid var(--accent); color:var(--accent); }
-
-    /* Collapsibles */
-    .toc { background:#fff; border-radius:12px; padding: .75rem 1rem; margin-bottom:1rem; border:1px solid #cfe8ea; }
-    .toc h2 { margin:.25rem 0 .5rem; font-size:1.1rem; color:#00796b; }
-    .toc a { display:inline-block; margin:.15rem .5rem .15rem 0; color:#0066cc; text-decoration:none; }
-
-    details { background:#fff; border:1px solid #cfe8ea; border-radius:12px; margin:.75rem 0; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
-    summary { cursor:pointer; padding: .9rem 1rem; font-weight:600; color:#00796b; list-style:none; }
-    summary::-webkit-details-marker { display:none; }
-    .chev { transition: transform .25s ease; display:inline-block; margin-right:.25rem; }
-    details[open] .chev { transform: rotate(90deg); }
-    .content { padding: 0 1rem 1rem; }
-    
-    /* TEXT ALIGNMENT UPDATE: Justified text */
-    .content p, .content li { 
-      line-height: 1.6; 
-      margin-bottom: 1rem; 
-      text-align: justify; 
-    }
-    
-    .content h3 { color: var(--brand); margin-top: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; text-align: left; }
-    .content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
-    .content li { margin-bottom: 0.5rem; line-height: 1.5; }
-
-    /* Special Procedural Box */
-    .procedural-box {
-      border: 2px solid var(--brand);
-      background-color: #f1f8e9;
-      padding: 1rem;
+    /* Controls Area */
+    .controls {
+      background: #fff;
+      padding: 15px;
       border-radius: 8px;
-      margin: 1rem 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    /* Nice anchors */
-    .anchor { scroll-margin-top: 110px; }
+    button {
+      background-color: var(--brand);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    button:hover { background-color: var(--accent); }
+    button.active { background-color: var(--accent); box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
+    button.print-btn { background-color: #444; margin-left: auto; }
+    
+    /* Tables and Layout */
+    .view-section { display: none; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+    .view-section.active { display: block; }
 
-    /* Print */
+    h1 { text-align: center; color: var(--brand); margin-bottom: 30px; font-size: 1.8rem; }
+    
+    /* Style for the update note */
+    .update-note {
+      display: inline-block;
+      font-size: 0.6em;
+      color: #d32f2f; /* Alert color to make it noticeable */
+      font-weight: normal;
+      font-style: italic;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+
+    h2.group-header { 
+      background-color: #f0fbfd; 
+      color: var(--brand); 
+      padding: 10px; 
+      border-left: 5px solid var(--accent); 
+      margin-top: 30px; 
+      font-size: 1.2rem;
+      page-break-after: avoid;
+    }
+    
+    .advisors-box {
+      font-size: 0.9rem;
+      color: #555;
+      padding: 5px 10px;
+      margin-bottom: 10px;
+      font-style: italic;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 0.95rem; }
+    th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
+    th { background-color: #005b63; color: white; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+
+    /* --- PRINT STYLES --- */
     @media print {
-      .controls, .toc { display:none !important; }
-      details { border:none; box-shadow:none; }
-      summary { padding:0; color:inherit; }
-      .content { padding:0; }
-      details[open] .content { display: block; }
+      body { background: #fff; }
+      .controls { display: none !important; }
+      .view-section { box-shadow: none; margin: 0; padding: 0; width: 100%; }
+      table { border: 1px solid #000; font-size: 10pt; }
+      th { background-color: #eee !important; color: #000 !important; font-weight: bold; border: 1px solid #000; }
+      td { border: 1px solid #000; }
+      h2.group-header { border: 1px solid #000; border-left: 5px solid #000; background: #eee; color: #000; }
+      .letterhead { background-color: #eee !important; -webkit-print-color-adjust: exact; }
+      tr { page-break-inside: avoid; }
+      .update-note { color: #000; } /* Print in black */
     }
-
-    /* Overrides per user request to match previous guide style */
-    body, html, .content, .procedural-box { font-family: Georgia, 'Times New Roman', Times, serif !important; }
-    
-    /* Tables */
-    table.data { width:100%; border-collapse:collapse; background:#fff; border:1px solid #cfe8ea; border-radius:12px; overflow:hidden; margin-top: 1rem; margin-bottom: 1rem; }
-    table.data th, table.data td { border:1px solid #cfe8ea; padding:.55rem .7rem; vertical-align:top; text-align: left; }
-    table.data th { background:#f0fbfd; color:#00796b; text-align:left; }
-    table.data tbody tr:nth-child(even) { background:#f8ffff; }
-    
-    /* Bibliography Styles */
-    .sources ul { margin:.25rem 0 1rem 1.25rem; word-break: break-all; }
-    .sources a { color:#0066cc; text-decoration:none; }
-    .sources a:hover { text-decoration:underline; }
-    
-    /* Bold emphasis */
-    .content strong { font-weight:700; color: #000; }
   </style>
 </head>
 <body>
+
   <div class="letterhead">
     <div class="address"><strong>4 Isminis Str.</strong><br>Pylaia, Thessaloniki - 55535</div>
     <div class="logo-container">
@@ -120,273 +125,330 @@
   </div>
 
   <main>
-    <h1>PYLEAMUN GENERAL ASSEMBLY</h1>
-    <h2 class="subtitle">Human Rights or Cultural Relativism: Can Universal Norms Truly Exist?</h2>
-    
-    <div class="container">
-      <div class="controls">
-        <button id="expandAll">Expand all</button>
-        <button id="collapseAll" class="secondary">Collapse all</button>
-        <button id="printPage" class="ghost">Print</button>
-      </div>
+    <div class="controls">
+      <button onclick="switchView('school')" id="btn-school" class="active">View by School</button>
+      <button onclick="switchView('committee')" id="btn-committee">View by Committee</button>
+      <button onclick="switchView('country')" id="btn-country">View by Country</button>
+      <button onclick="switchView('ga')" id="btn-ga">View by General Assembly</button>
+      <button onclick="window.print()" class="print-btn">🖨 Print Current View</button>
+    </div>
 
-      <nav class="toc">
-        <h2>Quick Navigation</h2>
-        <a href="#sec1">1. Introduction to the Topic</a>
-        <a href="#sec2">2. Definition of Key Terms</a>
-        <a href="#sec3">3. Historical Background & Timeline</a>
-        <a href="#sec4">4. Current Situation</a>
-        <a href="#sec5">5. Previous Attempts to Solve the Issue</a>
-        <a href="#sec6">6. Possible Solutions</a>
-        <a href="#sec7">7. Major Parties Involved</a>
-        <a href="#sources">8. Bibliography</a>
-      </nav>
+    <div id="view-school" class="view-section active">
+      <h1>Delegates List: By School <br><span class="update-note">The list is constantly being updated</span></h1>
+      <div id="school-content"></div>
+    </div>
 
-      <details id="sec1" class="anchor">
-        <summary><span class="chev">▸</span>1. Introduction to the Topic</summary>
-        <div class="content">
-          <p>Since the end of World War II and the creation of the United Nations in 1945, universal human rights have been a central goal of international law. However, the idea that human rights should apply everywhere remains highly controversial. Many governments, analysts, and advocates argue that enforcing human rights globally can act as a form of ideological dominance.</p>
-          <p>They claim that Western liberal values are being imposed on non-Western societies, conflicting with local policies, traditions, and cultural practices, and potentially limiting cultural diversity. Debate also exists within the human-rights community. Some argue that human rights must be adapted to local contexts, while others worry that such flexibility could excuse oppression.</p>
-          <p>During the drafting of the Universal Declaration of Human Rights (UDHR) in 1947, the American Anthropological Association warned that the document reflected mainly Western values. They argued that cultural standards differ, and that what counts as a “right” in one society may be seen as harmful in another.</p>
-          <p>Despite these tensions, many countries have taken action to promote peace, dignity, and equality. The UDHR—created by states with diverse political and cultural backgrounds—became a historic milestone and inspired numerous later human-rights treaties, including the ASEAN (Bangkok) Declaration, the Vienna Declaration and Programme of Action, and the European Convention on Human Rights.</p>
-          <p>This ongoing ideological debate raises key questions: Can human rights be truly universal, or do they reflect the values of those who draft them? Delegates are encouraged to explore whether universal human rights and cultural diversity can coexist.</p>
-        </div>
-      </details>
+    <div id="view-committee" class="view-section">
+      <h1>Delegates List: By Committee <br><span class="update-note">The list is constantly being updated</span></h1>
+      <div id="committee-content"></div>
+    </div>
 
-      <details id="sec2" class="anchor">
-        <summary><span class="chev">▸</span>2. Definition of Key Terms</summary>
-        <div class="content">
-          <p><strong>Universal Human Rights:</strong> Human rights are some fundamental rights that every person has simply by virtue of being human, regardless of nationality, culture or identity. The Universal Declaration of Human Rights (UDHR) outlines 30 articles that define fundamental human rights and freedoms.</p>
-          
-          <p><strong>Cultural Relativism:</strong> The belief that each culture is diverse and therefore ethical practices differ among them, and what is considered right in one culture may be considered wrong in another. The indication of cultural relativism is that no society is superior to another; they are solely different.</p>
-          
-          <p><strong>Western Values (regarding human rights):</strong> When human rights are not applied universally, but are rather used selectively by Western countries to exert pressure on others, and protect their own strategic interests – turning a universal ideal into a tool for maintaining global influence. Such values are characterized as culturally prejudiced, as they often prioritize individual rights over collective or community-based values found in many non-Western societies.</p>
-          
-          <p><strong>Universal Declaration of Human Rights (UDHR):</strong> A foundational 1948 UN document outlining rights considered universal and inalienable.</p>
-          
-          <p><strong>Sovereignty:</strong> The authority of a state to govern itself without external interference.</p>
-          
-          <p><strong>Collective Rights:</strong> Rights held by a group rather than by individuals (e.g., Indigenous cultural rights).</p>
-          
-          <p><strong>Universal Norms:</strong> Ethical guidelines and principles of behavior that are considered to be widely accepted and applicable to all societies and cultures. In the context of human rights, this term expresses the belief that there are certain moral and legal rights that should be respected by everyone and everywhere.</p>
-          
-          <p><strong>Segregation:</strong> The act of deliberately separating people based on their race, color, gender, language, religion, nationality or ethnic origin without an objective and reasonable justification.</p>
-          
-          <p><strong>Apartheid:</strong> The implementation of a system in which the racial segregation of one racial group, which is deprived of its political and civil rights, is legalized. Such systems were found in South Africa in the 20th century and aimed to separate the minority white population from their black counterparts. Nowadays, apartheid is a crime against humanity, punishable under the Rome Statute of the international criminal court.</p>
-        </div>
-      </details>
+    <div id="view-country" class="view-section">
+      <h1>Delegates List: By Country <br><span class="update-note">The list is constantly being updated</span></h1>
+      <div id="country-content"></div>
+    </div>
 
-      <details id="sec3" class="anchor">
-        <summary><span class="chev">▸</span>3. Historical Background & Timeline</summary>
-        <div class="content">
-          <h3>Historical Overview</h3>
-          <p>After the horrors of World War II, the international community sought to create a framework that would protect individuals from discrimination, violence, and injustice. This effort resulted in the UDHR, which became the basis for international human rights law. However, the UDHR was mainly drafted by a small group of states, many of which were Western, raising questions about its cultural representation.</p>
-          <p>During the 1960s–1990s, newly independent nations in Africa and Asia began challenging the universality of rights, arguing that some aspects—especially those related to family, gender roles, or political systems—did not align with their cultural values. The 1993 Vienna Declaration attempted to bridge the divide, stating that all human rights are universal but must be considered in their cultural and national contexts.</p>
-          <p>Today, controversies continue over issues such as women's rights, LGBTQ+ rights, freedom of expression, and the rights of Indigenous peoples. Some governments argue that enforcing international standards can threaten cultural traditions or political stability, while others claim that cultural relativism is sometimes used as an excuse to justify human rights violations.</p>
-          
-          <h3>Timeline of Events</h3>
-          <table class="data">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Description of Events</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>10 Dec 1948</strong></td>
-                <td>The UN General Assembly adopted the <strong>Universal Declaration of Human Rights (UDHR)</strong>. It set out a broad catalogue of civil, political, economic, social and cultural rights and became the normative reference point for later binding instruments.</td>
-              </tr>
-              <tr>
-                <td><strong>1966</strong></td>
-                <td>States moved from declaration to treaty law with the <strong>ICCPR</strong> and <strong>ICESCR</strong>. Together with the UDHR, these form the “International Bill of Human Rights.”</td>
-              </tr>
-              <tr>
-                <td><strong>1981 / 1986</strong></td>
-                <td><strong>The African Charter on Human and Peoples’ Rights</strong> adopted (entered into force 1986). It emphasizes duties and collective rights as well as individual rights.</td>
-              </tr>
-              <tr>
-                <td><strong>Late 80s–90s</strong></td>
-                <td><strong>The "Asian Values" Debate:</strong> A prominent intellectual and political debate asserting that some societies prioritize community and social harmony over individual political liberties.</td>
-              </tr>
-              <tr>
-                <td><strong>1990</strong></td>
-                <td><strong>Cairo Declaration on Human Rights in Islam:</strong> A statement by OIC states framing rights explicitly within an Islamic-law perspective.</td>
-              </tr>
-              <tr>
-                <td><strong>1993</strong></td>
-                <td><strong>Bangkok Declaration:</strong> Representing the viewpoint of Asian states before the World Conference.</td>
-              </tr>
-              <tr>
-                <td><strong>1993</strong></td>
-                <td><strong>World Conference on Human Rights (Vienna):</strong> Produced the Vienna Declaration, explicitly reaffirming universality while acknowledging national and regional particularities.</td>
-              </tr>
-              <tr>
-                <td><strong>2004</strong></td>
-                <td>Establishment of the <strong>African Court on Human and Peoples’ Rights</strong>.</td>
-              </tr>
-              <tr>
-                <td><strong>2006</strong></td>
-                <td>UN Commission on Human Rights replaced by the <strong>UN Human Rights Council</strong>. Mechanisms like the Universal Periodic Review (UPR) were intended to make scrutiny more universal.</td>
-              </tr>
-              <tr>
-                <td><strong>2012</strong></td>
-                <td><strong>ASEAN Human Rights Declaration:</strong> Attempts to situate UDHR norms in regional political contexts.</td>
-              </tr>
-              <tr>
-                <td><strong>2018</strong></td>
-                <td><strong>UNGA Report A/73/227:</strong> Argues that "cultural rights are not a justification for violations of human rights."</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </details>
-
-      <details id="sec4" class="anchor">
-        <summary><span class="chev">▸</span>4. Current Situation</summary>
-        <div class="content">
-          <p>In the contemporary international arena, the tension between universal human rights and cultural relativism remains acute. In early 2025, the U.N. High Commissioner for Human Rights, Volker Türk, warned that “the global consensus on human rights is crumbling.”</p>
-          <p>Several states continue to push back against what they see as Western-imposed norms. For example, China has rejected Western-led reform recommendations, framing them as ideological interference. Meanwhile, international legal scholars caution that the dominant human rights regime still carries deep Western philosophical roots, a legacy that developing nations are challenging.</p>
-          
-          <h3>Key Areas of Conflict</h3>
-          <ul>
-            <li><strong>Women’s Rights in MENA Regions:</strong> Governments argue cultural/religious values should guide laws on marriage, dress, and inheritance. Critics argue these limit equality.</li>
-            <li><strong>LGBTQ+ Rights in Africa and Asia:</strong> Many countries criminalize same-sex relationships based on cultural norms; international organizations claim this violates fundamental freedoms.</li>
-            <li><strong>Indigenous Cultural Rights in the Americas:</strong> Indigenous communities demand protection for traditions and land, arguing universalist policies ignore unique cultural identities.</li>
-            <li><strong>Asian Values Debate:</strong> Some East Asian governments argue that community harmony takes priority over individual freedoms.</li>
-          </ul>
-        </div>
-      </details>
-
-      <details id="sec5" class="anchor">
-        <summary><span class="chev">▸</span>5. Previous Attempts to Solve the Issue</summary>
-        <div class="content">
-           <p>Numerous efforts have been made to bridge the gap between universal human rights and cultural relativism. However, implementation often faces criticism for overlooking local contexts or interfering with cultural practices.</p>
-
-           <h3>The Vienna Declaration and Programme of Action (1993)</h3>
-           <p>Adopted by 171 UN member states, this declaration reaffirmed the universality of human rights while recognizing the importance of cultural diversity. A major outcome was the creation of the <strong>UN Office of the High Commissioner for Human Rights (OHCHR)</strong>.</p>
-           
-           <h3>The Bangkok Declaration (1993)</h3>
-           <p>Adopted by 34 Asian countries, it stressed that human rights must be interpreted with respect to regional, national, historical, cultural, and religious contexts. It criticized the imposition of external values and emphasized national sovereignty.</p>
-
-           <h3>The African Charter on Human and Peoples’ Rights (1981)</h3>
-           <p>Provides a regionally adapted framework combining individual rights with communal values and duties. Enforcement improved with the establishment of the African Court on Human and Peoples’ Rights in 2004, though challenges in implementation persist.</p>
-           
-           <h3>Pre-UDHR Consultation (1947)</h3>
-           <p>UNESCO conducted a multi-cultural survey including ideas from Chinese, African, Islamic, and Indian cultures to avoid a purely Western framing for the UDHR. While not resolving every concern, it was a stepping stone for universal norms.</p>
-        </div>
-      </details>
-
-      <details id="sec6" class="anchor">
-        <summary><span class="chev">▸</span>6. Possible Solutions</summary>
-        <div class="content">
-          <h3>Strengthened Intercultural Dialogue</h3>
-          <p>Fostering global conversations between nations with different perspectives is crucial. Conferences where leaders exchange perspectives respectfully can help find feasible solutions that bridge the gap between universal rights and local practices.</p>
-
-          <h3>Regional Human Rights Frameworks</h3>
-          <p>Encouraging the creation of human rights charters at regional levels (like ASEAN or the African Union) allows for legally binding instruments tailored to regional realities, provided they comply with core international norms. This allows for adjustment to regional cultural/religious norms while implementing basic rights.</p>
-
-          <h3>Capacity Building and Education</h3>
-          <p>Educational and Institutional Capacity-Building could support the inclusion of human rights in national curricula. Civil society initiatives that bridge local customs with global rights can gradually cultivate respect and understanding.</p>
-
-          <h3>Monitoring Misuse of Cultural Relativism</h3>
-          <p>Effective monitoring mechanisms must ensure that states do not exploit "cultural relativism" to violate fundamental rights. Independent bodies should investigate and report instances where human rights are encroached upon under the guise of culture.</p>
-        </div>
-      </details>
-      
-      <details id="sec7" class="anchor">
-        <summary><span class="chev">▸</span>7. Major Parties Involved</summary>
-        <div class="content">
-          <table class="data">
-            <thead>
-              <tr>
-                <th>Party</th>
-                <th>Role & Perspective</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>The United States</strong></td>
-                <td>Encourages democracy and civil liberties globally, playing a major role in the UDHR and ending Apartheid. However, it faces criticism for internal rights issues (racial discrimination) and military interventions.</td>
-              </tr>
-              <tr>
-                <td><strong>China</strong></td>
-                <td>Emphasizes sovereignty, non-interference, and economic development over political rights. Faces criticism for restrictions on free speech and treatment of minorities (Uyghurs, Tibetans).</td>
-              </tr>
-              <tr>
-                <td><strong>Sweden</strong></td>
-                <td>A major contributor to promoting rights domestically (strong welfare, gender equality) and abroad. Supports conflict resolution, refugee protection, and elimination of poverty via the UN.</td>
-              </tr>
-              <tr>
-                <td><strong>The United Nations</strong></td>
-                <td>The primary promoter/protector of rights via the Human Rights Council and OHCHR. Faces criticism for bias or uneven enforcement.</td>
-              </tr>
-              <tr>
-                <td><strong>Amnesty International</strong></td>
-                <td>Grassroots NGO operating in 150+ countries. Exerts pressure on governments via petitions and protests regarding free speech, torture, and the death penalty.</td>
-              </tr>
-              <tr>
-                <td><strong>Human Rights Watch (HRW)</strong></td>
-                <td>Research-driven organization established in 1978. Investigates abuses by governments/corporations and publishes detailed reports to influence policymakers.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </details>
-
-      <details id="sources" class="anchor">
-        <summary><span class="chev">▸</span>8. Bibliography</summary>
-        <div class="content">
-          <div class="sources">
-            <h3>Online Resources</h3>
-            <ul>
-              <li><a href="https://www.un.org/en/about-us/universal-declaration-of-human-rights" target="_blank">UN: Universal Declaration of Human Rights</a></li>
-              <li><a href="https://www.simplypsychology.org/cultural-relativism.html" target="_blank">Simply Psychology: Cultural Relativism</a></li>
-              <li><a href="https://esthinktank.com/2025/05/13/human-rights-merely-a-western-perspective/" target="_blank">ES Think Tank: Human Rights - A Western Perspective?</a></li>
-              <li><a href="https://www.law.cornell.edu/wex/segregation" target="_blank">Cornell Law: Segregation</a></li>
-              <li><a href="https://www.law.cornell.edu/wex/apartheid" target="_blank">Cornell Law: Apartheid</a></li>
-              <li><a href="https://humanrights.americananthro.org/1947-statement-on-human-rights/" target="_blank">American Anthropological Association: 1947 Statement</a></li>
-              <li><a href="https://plato.stanford.edu/index.html" target="_blank">Stanford Encyclopedia of Philosophy</a></li>
-            </ul>
-
-            <h3>Official Documents</h3>
-            <ul>
-              <li>Universal Declaration of Human Rights, UNGA Res. 217 A (III), 10 Dec 1948.</li>
-              <li>International Covenant on Civil and Political Rights (ICCPR), 1966.</li>
-              <li>Vienna Declaration and Programme of Action, 1993.</li>
-              <li>African Charter on Human and Peoples’ Rights (Banjul Charter), 1981.</li>
-              <li>Cairo Declaration on Human Rights in Islam, 1990 (OIC).</li>
-              <li>ASEAN Human Rights Declaration (2012).</li>
-            </ul>
-            
-            <h3>Books & Academic Sources</h3>
-            <ul>
-              <li>Donnelly, Jack. <em>Universal Human Rights in Theory and Practice.</em> Cornell University Press, 2013.</li>
-              <li>Donnelly, Jack. <em>Cultural Relativism and Universal Human Rights</em>, 6(4) HUM. RTS. Q. 400 (1984).</li>
-              <li>Pollis, Adamantia & Schwab, Peter (eds.). <em>Human Rights: Cultural and Ideological Perspectives.</em> Praeger, 1979.</li>
-              <li>Merry, Sally Engle. <em>Human Rights and Gender Violence.</em> University of Chicago Press, 2006.</li>
-              <li>Sen, Amartya. <em>Human Rights and Asian Values.</em> New Republic, 1997.</li>
-              <li>Abdullahi An-Na’im – <em>Cultural Transformation and Human Rights in Africa</em> (2013).</li>
-            </ul>
-          </div>
-        </div>
-      </details>
-
+    <div id="view-ga" class="view-section">
+      <h1>Delegates List: By General Assembly (No NATO) <br><span class="update-note">Historical delegates grouped by school country</span></h1>
+      <div id="ga-content"></div>
     </div>
   </main>
 
-  <script>
-    const expandAllBtn = document.getElementById('expandAll');
-    const collapseAllBtn = document.getElementById('collapseAll');
-    const printBtn = document.getElementById('printPage');
+  <div id="raw-data-source" style="display:none;">
+    <h2>17th Senior High School of Thessaloniki</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> efidamtsi@gmail.com | 697-2315687<br><strong>Advisor 2:</strong> georgiadouramani@gmail.com | 697-6400026</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Aikaterini Chatziathanasiou</td><td>UN Environment Programme</td><td>United Arab Emirates</td></tr><tr><td>2</td><td>Anastasia Kakhniashvili</td><td>Security Council</td><td>United Arab Emirates</td></tr><tr><td>3</td><td>Angelos Anastasiadis</td><td>UNESCO</td><td>United Arab Emirates</td></tr><tr><td>4</td><td>Dimitrios Papadopoulos</td><td>Economic & Social Council</td><td>United Arab Emirates</td></tr><tr><td>5</td><td>Ilektra-Paraskevi Tzanelli</td><td>NATO ️</td><td>Slovenia</td></tr><tr><td>6</td><td>Maria Katsamouri</td><td>World Health Organisation</td><td>United Arab Emirates</td></tr><tr><td>7</td><td>Natalia-Georgia Papadopoulou</td><td>Human Rights Council</td><td>United Arab Emirates</td></tr><tr><td>8</td><td>Theodora Taraktsoglou</td><td>UN Women ‍️</td><td>United Arab Emirates</td></tr></table>
 
-    expandAllBtn.addEventListener('click', () => {
-      document.querySelectorAll('details').forEach(d => d.open = true);
+    <h2>1st Junior High School of Pyrgos</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> panlamprini@yahoo.gr | 6938630036<br><strong>Advisor 2:</strong> msmarnaki@gmail.com | 6936670688</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Charalampidi Dionysia</td><td>Human Rights Council</td><td>Czech Republic</td></tr><tr><td>2</td><td>Diamantopoulou Maria Emmeleia</td><td>World Health Organisation</td><td>Czech Republic</td></tr><tr><td>3</td><td>Dimitropoulou Elpida</td><td>Economic & Social Council</td><td>Austria</td></tr><tr><td>4</td><td>Dimitroulopoulou Dimitra - Myrina</td><td>UNESCO</td><td>Czech Republic</td></tr><tr><td>5</td><td>Dre Chrysaida</td><td>Security Council</td><td>Austria</td></tr><tr><td>6</td><td>Exarchopoulou Theofani</td><td>UN Environment Programme</td><td>Austria</td></tr><tr><td>7</td><td>Kaminari Gerasimina</td><td>Economic & Social Council</td><td>Czech Republic</td></tr><tr><td>8</td><td>Kaproulias Angelos</td><td>NATO ️</td><td>Canada</td></tr><tr><td>9</td><td>Loumiti Maria</td><td>UN WOMEN</td><td>Austria</td></tr><tr><td>10</td><td>Thanopoulou Aikaterini Maria</td><td>UNESCO</td><td>Austria</td></tr><tr><td>11</td><td>Thomopoulou Anastasia</td><td>UN Women ‍️</td><td>Czech Republic</td></tr><tr><td>12</td><td>Thomopoulou Artemis</td><td>Security Council</td><td>Czech Republic</td></tr><tr><td>13</td><td>Togias Evangelos</td><td>Human Rights Council</td><td>Austria</td></tr><tr><td>14</td><td>Trantas Antonios</td><td>NATO ️</td><td>Czech Republic</td></tr><tr><td>15</td><td>Tzavara Anastasia Stefania</td><td>World Health Organisation</td><td>Austria</td></tr><tr><td>16</td><td>Vasileiou Ioannis</td><td>UN Environment Programme</td><td>Czech Republic</td></tr></table>
+
+    <h2>1st Middle School of Kifisia</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> aristealekka@gmail.com | 6976557370<br><strong>Advisor 2:</strong> mich.an@outlook.com | 6986722925</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Bautista Gedtrej</td><td>UNESCO</td><td>China</td></tr><tr><td>2</td><td>Betsas Apostolos</td><td>NATO ️</td><td>China</td></tr><tr><td>3</td><td>Betsas Panagiotis</td><td>UN Environment Programme</td><td>China</td></tr><tr><td>4</td><td>Danikas Vasilis</td><td>Security Council</td><td>Saudi Arabia</td></tr><tr><td>5</td><td>Despotopoulos Apollonas</td><td>UN Environment Programme</td><td>Saudi Arabia</td></tr><tr><td>6</td><td>Georgala Melina</td><td>Economic & Social Council</td><td>Saudi Arabia</td></tr><tr><td>7</td><td>Georgiadis Konstantinos</td><td>NATO ️</td><td>Saudi Arabia</td></tr><tr><td>8</td><td>Giotakis Aris</td><td>Historical Crisis Committee</td><td>The Acarnanian League</td></tr><tr><td>9</td><td>Giotakis Fineas</td><td>Historical Crisis Committee</td><td>Byzantium</td></tr><tr><td>10</td><td>Karantzia Christina</td><td>Human Rights Council</td><td>Saudi Arabia</td></tr><tr><td>11</td><td>Markou-Roussi Athina</td><td>Human Rights Council</td><td>China</td></tr><tr><td>12</td><td>Papanikolaou Elias</td><td>World Health Organisation</td><td>Saudi Arabia</td></tr><tr><td>13</td><td>Patras Dimitris</td><td>UNESCO</td><td>Saudi Arabia</td></tr><tr><td>14</td><td>Sdralis Andreas</td><td>Security Council</td><td>China</td></tr><tr><td>15</td><td>Theodoropoulos Theodore</td><td>World Health Organisation</td><td>China</td></tr><tr><td>16</td><td>Tsatsari Kiara</td><td>UN Women ️</td><td>China</td></tr><tr><td>17</td><td>Tsilivigou Alice</td><td>UN WOMEN</td><td>Saudi Arabia</td></tr><tr><td>18</td><td>Violintzis Vasilis</td><td>Economic & Social Council</td><td>China</td></tr></table>
+
+    <h2>1st Middle School of Pylea</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> fanivasilikou68@gmail.com | 6976371669<br><strong>Advisor 2:</strong> georgelemon3@yahoo.gr | 6938141113</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Charistes Konstantinos</td><td>World Health Organisation</td><td>France</td></tr><tr><td>2</td><td>Christoforidis Konstantinos</td><td>Security Council</td><td>France</td></tr><tr><td>3</td><td>Datsis Vasilios</td><td>Security Council</td><td>Mexico</td></tr><tr><td>4</td><td>Floros Ioannis</td><td>NATO ️</td><td>France</td></tr><tr><td>5</td><td>Fountoulakis Georgios</td><td>Economic & Social Council</td><td>Mexico</td></tr><tr><td>6</td><td>Laftsidis Georgios</td><td>Historical Crisis Committee</td><td>City State of Corinth</td></tr><tr><td>7</td><td>Madi Olivia</td><td>Human Rights Council</td><td>France</td></tr><tr><td>8</td><td>Papaspyridakos Symeon</td><td>Economic & Social Council</td><td>France</td></tr><tr><td>9</td><td>Pavlidis-Charalambidis Alexandros</td><td>World Health Organisation</td><td>Mexico</td></tr><tr><td>10</td><td>Verga Ioanna</td><td>UN WOMEN</td><td>France</td></tr></table>
+
+    <h2>1st Model Junior High School of Thessaloniki</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> aspakara@gmail.com | 6979915770<br><strong>Advisor 2:</strong> doratoli@yahoo.com | 693830470916</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Babaou Martha</td><td>Human Rights Council</td><td>The Netherlands</td></tr><tr><td>2</td><td>Barbalia Domniki</td><td>UN Environment Programme</td><td>Sweden</td></tr><tr><td>3</td><td>Dimitriou Margarita</td><td>UN Women ‍️</td><td>Sweden</td></tr><tr><td>4</td><td>Dimou Dimitra</td><td>UNESCO</td><td>The Netherlands</td></tr><tr><td>5</td><td>Drosou Evangelia</td><td>Security Council</td><td>The Netherlands</td></tr><tr><td>6</td><td>Kofidou Anastasia</td><td>World Health Organisation</td><td>The Netherlands</td></tr><tr><td>7</td><td>Mavidou Valeria</td><td>UNESCO</td><td>Sweden</td></tr><tr><td>8</td><td>Mavrogeni Ioanna</td><td>Human Rights Council</td><td>Sweden</td></tr><tr><td>9</td><td>Papadopoulos Leonidas</td><td>NATO ️</td><td>The Netherlands</td></tr><tr><td>10</td><td>Poursanidou Aikaterini</td><td>World Health Organisation</td><td>Sweden</td></tr><tr><td>11</td><td>Stamou Anastasia</td><td>Security Council</td><td>Sweden</td></tr><tr><td>12</td><td>Taxidis Anastasios</td><td>NATO ️</td><td>Sweden</td></tr><tr><td>13</td><td>Tsemperidis Ioannis</td><td>Economic & Social Council</td><td>Sweden</td></tr><tr><td>14</td><td>Tsiakiris Nikolaos</td><td>Economic & Social Council</td><td>The Netherlands</td></tr><tr><td>15</td><td>Valsamidi Christina</td><td>UN Environment Programme</td><td>The Netherlands</td></tr><tr><td>16</td><td>Vasilakou Sophia</td><td>UN Women ‍️</td><td>The Netherlands</td></tr></table>
+
+    <h2>1st Senior High School of Evosmos</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> maaartha@gmail.com | 6946461665<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Achilleas Kitidis</td><td>Security Council</td><td>United Kingdom</td></tr><tr><td>2</td><td>Anastasia Velaora</td><td>Human Rights Council</td><td>United Kingdom</td></tr><tr><td>3</td><td>Dimitris Dimitrov</td><td>UN Women ️</td><td>United Kingdom</td></tr><tr><td>4</td><td>Lefteris Katramados Anagnostakis</td><td>UNESCO</td><td>United Kingdom</td></tr><tr><td>5</td><td>Petros Papalazarou</td><td>NATO ️</td><td>United Kingdom</td></tr><tr><td>6</td><td>Vasiliki Katsapouridou</td><td>UN Environment Programme</td><td>United Kingdom</td></tr></table>
+
+    <h2>1st Senior High School of Panorama</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> vctr gr@yahoo.com | 6972892403<br><strong>Advisor 2:</strong> szerva00@gmail.com | 6973404885</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Diamantopoulos Ippokratis</td><td>Security Council</td><td>USA</td></tr><tr><td>2</td><td>Gelashvili Lizi</td><td>Human Rights Council</td><td>USA</td></tr><tr><td>3</td><td>Giannopoulos Vasileios Rafail</td><td>Historical Crisis Committee</td><td>The City State of The Aetolian League</td></tr><tr><td>4</td><td>Gidarakos Dimitrios Marios</td><td>World Health Organisation</td><td>USA</td></tr><tr><td>5</td><td>Gidarakou Eleni Myrto</td><td>UN Women ‍️</td><td>USA</td></tr><tr><td>6</td><td>Gkampra Kyriaki</td><td>NATO ️</td><td>USA</td></tr><tr><td>7</td><td>Ioannidis Theodoros</td><td>Economic & Social Council</td><td>USA</td></tr><tr><td>8</td><td>Kappa Maria-Styliani</td><td>UN Environment Programme</td><td>USA</td></tr><tr><td>9</td><td>Stamatogiannis Georgios</td><td>Historical Crisis Committee</td><td>The City State of Argos</td></tr><tr><td>10</td><td>Zoumpliou Foteini</td><td>UNESCO</td><td>USA</td></tr></table>
+
+    <h2>1st Senior High School of Pylea</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> nan | nan<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Dimitris Polyzois</td><td>UN Environment Programme</td><td>Greece</td></tr><tr><td>2</td><td>Evangelia-Evanthia Samara</td><td>World Health Organisation</td><td>Poland</td></tr><tr><td>3</td><td>Grigorios Tsirimpatselis</td><td>UNESCO</td><td>Poland</td></tr><tr><td>4</td><td>Kalliopi Kaliaki</td><td>Human Rights Council</td><td>Poland</td></tr><tr><td>5</td><td>Vasileios Karampas</td><td>Security Council</td><td>Poland</td></tr><tr><td>6</td><td>Vasilis Papaspiridakos</td><td>Historical Crisis Committee</td><td>The Arcadian League</td></tr></table>
+
+    <h2>20th Senior High School of Thessaloniki</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> nanvalla@gmail.com | 6977780105<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Christina Angelakaki</td><td>UN Environment Programme</td><td>Nigeria</td></tr><tr><td>2</td><td>Dimitra Anyparidou</td><td>Economic & Social Council</td><td>South Africa</td></tr><tr><td>3</td><td>Eleftheria Tsiapou</td><td>World Health Organisation</td><td>South Africa</td></tr><tr><td>4</td><td>Foteini Geragori</td><td>Human Rights Council</td><td>South Africa</td></tr><tr><td>5</td><td>Gabriela Dida</td><td>UN Women ‍️</td><td>Nigeria</td></tr><tr><td>6</td><td>Katerina Sejati</td><td>Human Rights Council</td><td>Nigeria</td></tr><tr><td>7</td><td>Konstantina Koukouliata</td><td>UN Environment Programme</td><td>South Africa</td></tr><tr><td>8</td><td>Rabina Dida</td><td>Security Council</td><td>South Africa</td></tr><tr><td>9</td><td>Soumela Chatzikou</td><td>UNESCO</td><td>South Africa</td></tr><tr><td>10</td><td>Theodoros Schismenos</td><td>NATO ️</td><td>Montenegro</td></tr><tr><td>11</td><td>Vasileios Anastasios Konstantakis</td><td>Security Council</td><td>Nigeria</td></tr></table>
+
+    <h2>27th Senior High School of Thessaloniki</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> sevilab@yahoo.com | 6973696919<br><strong>Advisor 2:</strong> mkargo2707@gmail.com | 6947826021</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Aglaia Pervana</td><td>Human Rights Council</td><td>Croatia</td></tr><tr><td>2</td><td>Aspasia Paschaloudi</td><td>UN WOMEN</td><td>Croatia</td></tr><tr><td>3</td><td>Chrysoula Savvidou</td><td>UNESCO</td><td>Croatia</td></tr><tr><td>4</td><td>David Mamuladze</td><td>World Health Organisation</td><td>Croatia</td></tr><tr><td>5</td><td>Maria Margioula</td><td>UN Environment Programme</td><td>Croatia</td></tr></table>
+
+    <h2>2nd Middle School of Melissia</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> lilanifli1@gmail.com | 6977340344<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Ampatzidis Georgios</td><td>Economic & Social Council</td><td>Latvia</td></tr><tr><td>2</td><td>David Marilia</td><td>UN Women ‍️</td><td>Latvia</td></tr><tr><td>3</td><td>Galanopoulou Diamantenia</td><td>Historical Crisis Committee</td><td>The City State of Megara</td></tr><tr><td>4</td><td>Grizi Apollonia Eirini</td><td>UNESCO</td><td>Latvia</td></tr><tr><td>5</td><td>Kourkoutas Charalampos</td><td>Historical Crisis Committee</td><td>The City State of Locris</td></tr><tr><td>6</td><td>Lytinakis Dimitrios</td><td>Human Rights Council</td><td>Latvia</td></tr><tr><td>7</td><td>Magoula Alkmini Georgia</td><td>UN Environment Programme</td><td>Latvia</td></tr></table>
+
+    <h2>2nd Senior High School of Pylea</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> chrismp444@gmail.com | 6973285638<br><strong>Advisor 2:</strong> dkamara@yahoo.com | 6944954637</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Anozidou Nikiti</td><td>Human Rights Council</td><td>Romania</td></tr><tr><td>2</td><td>Demseri Margarita</td><td>UN Environment Programme</td><td>Romania</td></tr><tr><td>3</td><td>Forozidis Aristidis</td><td>Economic & Social Council</td><td>Romania</td></tr><tr><td>4</td><td>Giannakopoulou Xanthipi</td><td>UN Women ‍️</td><td>Romania</td></tr><tr><td>5</td><td>Misirlis Evaggelos</td><td>Security Council</td><td>Romania</td></tr><tr><td>6</td><td>Papaioannou Stamatis</td><td>NATO ️</td><td>Romania</td></tr><tr><td>7</td><td>Renta Theodosia</td><td>UNESCO</td><td>Romania</td></tr><tr><td>8</td><td>Sidiropoulou Dimitra</td><td>World Health Organisation</td><td>Romania</td></tr><tr><td>9</td><td>Vasiliadi Andriana</td><td>Historical Crisis Committee</td><td>The City State of Epidaurus</td></tr></table>
+
+    <h2>2nd Senior High School of Thermaikos</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> stavenice@gmail.com | 6977305615<br><strong>Advisor 2:</strong> mvakfari@gmail.com | 6974018629</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Antonia Kopterou</td><td>World Health Organisation</td><td>Egypt</td></tr><tr><td>2</td><td>Avraam Kontopoulos</td><td>Security Council</td><td>Egypt</td></tr><tr><td>3</td><td>Ioannis Pechlivanis</td><td>Economic & Social Council</td><td>Egypt</td></tr><tr><td>4</td><td>Izampella Ntantami</td><td>UN Women ‍️</td><td>Egypt</td></tr><tr><td>5</td><td>Katherine Angelopoulou</td><td>Human Rights Council</td><td>Egypt</td></tr><tr><td>6</td><td>Martha Ioannidou</td><td>UN Environment Programme</td><td>Egypt</td></tr><tr><td>7</td><td>Michalis Gavriilidis</td><td>UNESCO</td><td>Egypt</td></tr><tr><td>8</td><td>Panagiotis Basias</td><td>NATO ️</td><td>Estonia</td></tr></table>
+
+    <h2>2nd Senior High School of Thermi "Giorgos Ioannou"</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> ikofou@gmail.com | 6937191121<br><strong>Advisor 2:</strong> baxevanimarilyn@gmail.com | 6976994818</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Anagnostopoulos Anthimos</td><td>NATO ️</td><td>Hungary</td></tr><tr><td>2</td><td>Anthoulakis Nikolaos</td><td>Historical Crisis Committee</td><td>The Thessalian League</td></tr><tr><td>3</td><td>Athanasiou Georgios</td><td>Human Rights Council</td><td>Hungary</td></tr><tr><td>4</td><td>Bakirtsaki Eleni</td><td>Economic & Social Council</td><td>Hungary</td></tr><tr><td>5</td><td>Chatzispirou Eleni</td><td>Economic & Social Council</td><td>Malta</td></tr><tr><td>6</td><td>Daviti Anastasia</td><td>UN Environment Programme</td><td>Malta</td></tr><tr><td>7</td><td>Dogkosi Pandora</td><td>UN Women ‍️</td><td>Hungary</td></tr><tr><td>8</td><td>Dragolia Kyriaki</td><td>UN Environment Programme</td><td>Hungary</td></tr><tr><td>9</td><td>Drouza Olga-Anna</td><td>UN Women ‍️</td><td>Malta</td></tr><tr><td>10</td><td>Georgakaki Nikoletta</td><td>World Health Organisation</td><td>Hungary</td></tr><tr><td>11</td><td>Kousaridou Vasiliki-Foteini</td><td>Security Council</td><td>Malta</td></tr><tr><td>12</td><td>Kristina Thomo</td><td>Historical Crisis Committee</td><td>The City State of Corcyra</td></tr><tr><td>13</td><td>Larou Anna</td><td>Human Rights Council</td><td>Malta</td></tr><tr><td>14</td><td>Liaka Dimitra</td><td>NATO ️</td><td>Latvia</td></tr><tr><td>15</td><td>Sotiriadis Charalampos</td><td>UNESCO</td><td>Malta</td></tr><tr><td>16</td><td>Tsianaka Athina</td><td>World Health Organisation</td><td>Malta</td></tr><tr><td>17</td><td>Tsigoias Konstantinos</td><td>Security Council</td><td>Hungary</td></tr></table>
+
+    <h2>3rd High School of Stavroupoli</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> nan | nan<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Thanos Mouzakis</td><td>Security Council</td><td>Greece</td></tr></table>
+
+    <h2>3rd Junior High School of Kalamaria</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> pougaridoue@gmail.com | 6947126396<br><strong>Advisor 2:</strong> annatzuvara@gmail.com | 6936804068</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Alicia Levene</td><td>Security Council</td><td>Switzerland</td></tr><tr><td>2</td><td>Alkiviadis Protogerou</td><td>NATO ️</td><td>North Macedonia</td></tr><tr><td>3</td><td>Anastasia Stamna</td><td>UN Women ‍️</td><td>Switzerland</td></tr><tr><td>4</td><td>Despoina Koura</td><td>UN Environment Programme</td><td>Switzerland</td></tr><tr><td>5</td><td>Despoina Theodoridou</td><td>Economic & Social Council</td><td>Switzerland</td></tr><tr><td>6</td><td>Dimitra Chare</td><td>Human Rights Council</td><td>Switzerland</td></tr><tr><td>7</td><td>Irene Kyriakidou</td><td>UNESCO</td><td>Switzerland</td></tr><tr><td>8</td><td>Maria Ioakeimidou</td><td>World Health Organisation</td><td>Switzerland</td></tr></table>
+
+    <h2>3rd Junior High School of Thessaloniki</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> vmichaili@sch.gr | 6945410699<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Anahit Sargsyan</td><td>Economic & Social Council</td><td>Qatar</td></tr><tr><td>2</td><td>Andrea Calja</td><td>Security Council</td><td>Qatar</td></tr><tr><td>3</td><td>Bayan Nofal</td><td>UN Environment Programme</td><td>Qatar</td></tr><tr><td>4</td><td>Despoina Kotsaridou</td><td>UNESCO</td><td>Qatar</td></tr><tr><td>5</td><td>Nini Gelashvili</td><td>UN Women ‍️</td><td>Qatar</td></tr><tr><td>6</td><td>Sofia Aivazidou</td><td>Human Rights Council</td><td>Qatar</td></tr><tr><td>7</td><td>Stelina Alatzoglou</td><td>World Health Organisation</td><td>Qatar</td></tr></table>
+
+    <h2>6th Senior High School of Kalamaria</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> aeconom46@gmail.com | 6945410017<br><strong>Advisor 2:</strong> mypopaua@gmail.com | 6944270169</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Chalkia Stamatia</td><td>Human Rights Council</td><td>Finland</td></tr><tr><td>2</td><td>Kalintzaki Aphrodite</td><td>UNESCO</td><td>Finland</td></tr><tr><td>3</td><td>Kampadakis Marinos</td><td>NATO ️</td><td>Finland</td></tr><tr><td>4</td><td>Kontogeorgaki Dimitra</td><td>UN Environment Programme</td><td>Finland</td></tr><tr><td>5</td><td>Kosmidou Paraskevi</td><td>World Health Organisation</td><td>Finland</td></tr><tr><td>6</td><td>Moutropoulou Apostolia</td><td>Security Council</td><td>Finland</td></tr><tr><td>7</td><td>Ossanlis Petros</td><td>Economic & Social Council</td><td>Finland</td></tr><tr><td>8</td><td>Pagoni Ioanna Roumpini</td><td>UN Women ‍️</td><td>Finland</td></tr></table>
+
+    <h2>7th Senior High School of Kalamaria</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> aphrodite 005@hotmail.com | 6974594899<br><strong>Advisor 2:</strong> eirini savvidou@yahoo.com | 6944786262</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Bataoula Konstantina</td><td>Economic & Social Council</td><td>Ukraine</td></tr><tr><td>2</td><td>Christoforidou Evangelia</td><td>UN Environment Programme</td><td>Armenia</td></tr><tr><td>3</td><td>Lampidou Christina</td><td>UN Women ‍️</td><td>Armenia</td></tr><tr><td>4</td><td>Lazaridis Vasileios</td><td>World Health Organisation</td><td>Armenia</td></tr><tr><td>5</td><td>Myrmiliagkou Ioanna</td><td>NATO ️</td><td>Slovakia</td></tr><tr><td>6</td><td>Papaioannou Paschalia</td><td>UN Environment Programme</td><td>Ukraine</td></tr><tr><td>7</td><td>Salpingidou Maria-Ioanna</td><td>UNESCO</td><td>Ukraine</td></tr><tr><td>8</td><td>Sarafidou Maria</td><td>Human Rights Council</td><td>Ukraine</td></tr><tr><td>9</td><td>Sotiriadi Salomi</td><td>Economic & Social Council</td><td>Armenia</td></tr><tr><td>10</td><td>Tompris-Papantoniou Ermis</td><td>Security Council</td><td>Ukraine</td></tr><tr><td>11</td><td>Tsapatoli Lemonia Michaela</td><td>UN Women ‍️</td><td>Armenia</td></tr><tr><td>12</td><td>Tsiotra Efthalia-Zoi</td><td>World Health Organisation</td><td>Ukraine</td></tr><tr><td>13</td><td>Tsirogianni Anastasia</td><td>Human Rights Council</td><td>Armenia</td></tr><tr><td>14</td><td>Zarotiadou Stylian</td><td>UNESCO</td><td>Armenia</td></tr></table>
+
+    <h2>American Farm School</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> dchris@afs.edu.gr | 6970665154<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Eleni Giagtzoglou</td><td>UN WOMEN ‍️</td><td>Japan</td></tr><tr><td>2</td><td>Elpida Vaka</td><td>UN Women ‍️</td><td>Venezuela</td></tr><tr><td>3</td><td>Fotios Pastrikakis</td><td>Security Council</td><td>Japan</td></tr><tr><td>4</td><td>Georgia Polymenakou</td><td>NATO ️</td><td>Japan</td></tr><tr><td>5</td><td>Maria Kogkoli</td><td>Economic & Social Council</td><td>Japan</td></tr><tr><td>6</td><td>Maria Zacharo Dalla</td><td>UNESCO</td><td>Japan</td></tr><tr><td>7</td><td>Michael Tzimas</td><td>World Health Organisation</td><td>Japan</td></tr><tr><td>8</td><td>Michaela Stavroula Vavla</td><td>World Health Organisation</td><td>Venezuela</td></tr><tr><td>9</td><td>Milolika Karpova</td><td>NATO ️</td><td>Spain</td></tr><tr><td>10</td><td>Prodromos Itsiopoulos</td><td>Human Rights Council</td><td>Japan</td></tr></table>
+
+    <h2>American Farm School of Thessaloniki</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> anikif@afs.edu.gr | 6944244471<br><strong>Advisor 2:</strong> msfellow@afs.edu.gr | +1(267)449-5986</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Aikaterini - Maria Agrafioti</td><td>UN Environment Programme</td><td>Australia</td></tr><tr><td>2</td><td>Aikaterini Raikou</td><td>Human Rights Council</td><td>Germany</td></tr><tr><td>3</td><td>Alexandra Charalampidou</td><td>World Health Organisation</td><td>Germany</td></tr><tr><td>4</td><td>Andriana Sountoulidou</td><td>UN Women ‍️</td><td>Germany</td></tr><tr><td>5</td><td>Dimitra Zacharia</td><td>Security Council</td><td>Germany</td></tr><tr><td>6</td><td>Dimitrios Papakonstantinou</td><td>NATO ️</td><td>Bulgaria</td></tr><tr><td>7</td><td>Elena Ntourou</td><td>Historical Crisis Committee</td><td>The City State of Euboea</td></tr><tr><td>8</td><td>Ino Zolota</td><td>UN Environment Programme</td><td>Germany</td></tr><tr><td>9</td><td>Konstantinos Tsalis</td><td>Economic & Social Council</td><td>Australia</td></tr><tr><td>10</td><td>Maria Tsatsoua</td><td>Economic & Social Council</td><td>Germany</td></tr><tr><td>11</td><td>Marina Kavvadia</td><td>Human Rights Council</td><td>Australia</td></tr><tr><td>12</td><td>Miranda Georgiou</td><td>UNESCO</td><td>Australia</td></tr><tr><td>13</td><td>Panagiota Polymenakou</td><td>UNESCO</td><td>Germany</td></tr><tr><td>14</td><td>Stefania Papadopoulou</td><td>UN Women ‍️</td><td>Germany</td></tr><tr><td>15</td><td>Thomas Besas</td><td>NATO ️</td><td>Germany</td></tr><tr><td>16</td><td>Thomas Diamantidis</td><td>Security Council</td><td>Australia</td></tr><tr><td>17</td><td>Vasileia Chatzipanagiotidou</td><td>World Health Organisation</td><td>Australia</td></tr></table>
+
+    <h2>Anatolia College IB</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> nan | nan<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Achilleas Katsos</td><td>Security Council</td><td>Denmark</td></tr><tr><td>2</td><td>Dimitris Siokis</td><td>NATO ️</td><td>Denmark</td></tr></table>
+
+    <h2>Anaxagorio Senior High School of Nea Erythraia</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> nan | nan<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Charalampos Kolliniatis</td><td>Historical Crisis Committee</td><td>The City State of Athens</td></tr><tr><td>2</td><td>Michos Konstantinos</td><td>Historical Crisis Committee</td><td>The Archaean League</td></tr><tr><td>3</td><td>Nikolaos Lazaridis</td><td>Security Council</td><td>North Korea</td></tr><tr><td>4</td><td>Ntavelis Panagiotis</td><td>UN Environment Programme</td><td>North Korea</td></tr><tr><td>5</td><td>Paraskevi Kouskounelou</td><td>Human Rights Council</td><td>Republic of Korea</td></tr><tr><td>6</td><td>Sampanis Dimitrios</td><td>Historical Crisis Committee</td><td>The City State of Thebes</td></tr><tr><td>7</td><td>Theofania Laska</td><td>Human Rights Council</td><td>North Korea</td></tr></table>
+
+    <h2>Aristotelio College</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> elenapantoum@gmail.com | 6948268883<br><strong>Advisor 2:</strong> stella.pnpl@gmail.com | 6930993822</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Dimitris Santis</td><td>NATO ️</td><td>Norway</td></tr><tr><td>2</td><td>Fortouni Fyntanidou Georgia</td><td>UNESCO</td><td>Norway</td></tr><tr><td>3</td><td>Kioupeli Theano</td><td>UN Women ‍️</td><td>Norway</td></tr><tr><td>4</td><td>Lagouris Eystratios</td><td>UN Environment Programme</td><td>Norway</td></tr><tr><td>5</td><td>Mpekiaroudi Chrysoula</td><td>Human Rights Council</td><td>Norway</td></tr><tr><td>6</td><td>Papadopoulos Tilemachos</td><td>Economic & Social Council</td><td>Norway</td></tr><tr><td>7</td><td>Tapakabaki Salomi</td><td>Security Council</td><td>Norway</td></tr><tr><td>8</td><td>Theochari Eleni Maria</td><td>World Health Organisation</td><td>Norway</td></tr></table>
+
+    <h2>Experimental School of The University of Thessaloniki</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> kmaliara@sch.gr | 6977618199<br><strong>Advisor 2:</strong> kmaliara@sch.gr | -</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Akrivou Efthimia</td><td>UN Women ‍️</td><td>Belarus</td></tr><tr><td>2</td><td>Boulaki Nicol</td><td>Economic & Social Council</td><td>Belarus</td></tr><tr><td>3</td><td>Chanou Kalliopi Maria</td><td>UN Environment Programme</td><td>Russia</td></tr><tr><td>4</td><td>Chatzikamaris Marios</td><td>UNESCO</td><td>Belarus</td></tr><tr><td>5</td><td>Deligianni Ermioni Ioulia</td><td>Human Rights Council</td><td>Russia</td></tr><tr><td>6</td><td>Dimitroulakis Artemios</td><td>Security Council</td><td>Russia</td></tr><tr><td>7</td><td>Dimitroulakis Konstantinos</td><td>Security Council</td><td>Estonia</td></tr><tr><td>8</td><td>Kostopoulou Sylvestrou Olga</td><td>Security Council</td><td>Belarus</td></tr><tr><td>9</td><td>Koutroumbakis Dimitrios</td><td>UN Environment Programme</td><td>Belarus</td></tr><tr><td>10</td><td>Mastorogiannis Georgios</td><td>UNESCO</td><td>Russia</td></tr><tr><td>11</td><td>Papadopoulou Vassiliki</td><td>Economic & Social Council</td><td>Russia</td></tr><tr><td>12</td><td>Siouta Iliani Anna</td><td>Human Rights Council</td><td>Belarus</td></tr><tr><td>13</td><td>Taki Anna</td><td>World Health Organisation</td><td>Russia</td></tr><tr><td>14</td><td>Tourpali Athanassia</td><td>UN Women ‍️</td><td>Belarus</td></tr><tr><td>15</td><td>Tzola Evangelia</td><td>World Health Organisation</td><td>Belarus</td></tr></table>
+
+    <h2>General High School of Limena Thassos</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> nan | nan<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Eleftheria Sotireli</td><td>World Health Organisation</td><td>Greece</td></tr></table>
+
+    <h2>Ionideios Model Junior High School</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> gramm_mar@yahoo.gr | 6938424064<br><strong>Advisor 2:</strong> anastasia_paras@yahoo.gr | 6973986729</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Balourdou Eirini</td><td>UN Environment Programme</td><td>Iceland</td></tr><tr><td>2</td><td>Dimitris Simintzis</td><td>Human Rights Council</td><td>Iceland</td></tr><tr><td>3</td><td>Kladias Isidoros</td><td>UNESCO</td><td>Iceland</td></tr><tr><td>4</td><td>Markatou Agni</td><td>Human Rights Council</td><td>Ireland</td></tr><tr><td>5</td><td>Mouselimis Ikaros</td><td>World Health Organisation</td><td>Iceland</td></tr><tr><td>6</td><td>Nikolaou Konstantinos</td><td>NATO ️</td><td>Ireland</td></tr><tr><td>7</td><td>Panou Theofilos</td><td>Security Council</td><td>Ireland</td></tr><tr><td>8</td><td>Papagerorgiou Zoi</td><td>UN Women ‍️</td><td>Iceland</td></tr><tr><td>9</td><td>Politis Loukas</td><td>Economic & Social Council</td><td>Ireland</td></tr><tr><td>10</td><td>Rachmanidi Nefeli</td><td>UN Women ‍️</td><td>Ireland</td></tr><tr><td>11</td><td>Rompotis Evaggelos</td><td>UN Environment Programme</td><td>Ireland</td></tr><tr><td>12</td><td>Sofos Aimilios</td><td>Security Council</td><td>Iceland</td></tr><tr><td>13</td><td>Talaverou Vasiliki</td><td>UNESCO</td><td>Ireland</td></tr><tr><td>14</td><td>Tsimponis Georgios Taxiarchis</td><td>Economic & Social Council</td><td>Iceland</td></tr><tr><td>15</td><td>Vossou Aikaterini</td><td>World Health Organisation</td><td>Ireland</td></tr><tr><td>16</td><td>Zagas Ioannis</td><td>NATO ️</td><td>Iceland</td></tr></table>
+
+    <h2>Junior High School of Chortiatis</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> nan | nan<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Charitini Papaiordanidou</td><td>Human Rights Council</td><td>Greece</td></tr></table>
+
+    <h2>Junior High School of Macrochori</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> zarifivas@yahoo.gr | 6944418605<br><strong>Advisor 2:</strong> maapostolou7@gmail.com | 6977667892</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Alesia Biba</td><td>UN Environment Programme</td><td>New Zealand</td></tr><tr><td>2</td><td>Efthimia Valavani</td><td>UNESCO</td><td>Portugal</td></tr><tr><td>3</td><td>Kyriaki Panonidou</td><td>NATO ️</td><td>Portugal</td></tr><tr><td>4</td><td>Kyriakos Kromlidis</td><td>UN Environment Programme</td><td>Portugal</td></tr>
+    <tr><td>5</td><td>Maria Koukoutara</td><td>Human Rights Council</td><td>New Zealand</td></tr><tr><td>6</td><td>Penelope Sympetheri</td><td>UN Women ‍️</td><td>New Zealand</td></tr><tr><td>7</td><td>Rafail-Minas Sygkas</td><td>World Health Organisation</td><td>Portugal</td></tr><tr><td>8</td><td>Rafailia Karavangeli</td><td>Human Rights Council</td><td>Portugal</td></tr><tr><td>9</td><td>Vasiliki Nouri</td><td>Security Council</td><td>Portugal</td></tr><tr><td>10</td><td>Vasiliki-Irene Nouri</td><td>Economic & Social Council</td><td>Portugal</td></tr></table>
+
+    <h2>Model Vocational High School of Epanomi</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> etsipropoulou@gmail.com | 6977588325<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Andromachi Antoniou</td><td>Security Council</td><td>India</td></tr><tr><td>2</td><td>Angelo Rama</td><td>Human Rights Council</td><td>Turkey</td></tr><tr><td>3</td><td>Angelos Ioannidis</td><td>UNESCO</td><td>India</td></tr><tr><td>4</td><td>Christina Arvanitaki</td><td>NATO ️</td><td>Turkey</td></tr><tr><td>5</td><td>Chrysoula Vakou</td><td>Economic & Social Council</td><td>India</td></tr><tr><td>6</td><td>Eleftherios Christos Mourmouras</td><td>Historical Crisis Committee</td><td>The City State of Perintus, Thracian Peninsula</td></tr><tr><td>7</td><td>Evangelia Giannoudi</td><td>World Health Organisation</td><td>India</td></tr><tr><td>8</td><td>Freideriki Tseliou</td><td>UN Women ‍️</td><td>India</td></tr><tr><td>9</td><td>Georgia Ammanatidou</td><td>Human Rights Council</td><td>India</td></tr><tr><td>10</td><td>Kyriaki Nikiforidou</td><td>UN Environment Programme</td><td>India</td></tr></table>
+
+    <h2>Onassio State Senior High School of Thessaloniki - Periklis Stefanidis</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> despoavgerinou@gmail.com | 6974922111<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Aikaterini Arampatzi</td><td>UN Environment Programme</td><td>Italy</td></tr><tr><td>2</td><td>Angeliki Piperidou</td><td>World Health Organisation</td><td>Italy</td></tr><tr><td>3</td><td>Dimitra Maria Gourgouri</td><td>Economic & Social Council</td><td>Italy</td></tr><tr><td>4</td><td>Eleftheria Gkaletsi</td><td>World Health Organisation</td><td>Argentina</td></tr><tr><td>5</td><td>Fiorela Alla</td><td>Human Rights Council</td><td>Italy</td></tr>
+    <tr><td>6</td><td>Georgia Graikou</td><td>Human Rights Council</td><td>Argentina</td></tr><tr><td>7</td><td>Grigorios Tzoumakis</td><td>NATO ️</td><td>Italy</td></tr><tr><td>8</td><td>Ilias Pipilakidis</td><td>Historical Crisis Committee</td><td>The City State of Elis</td></tr><tr><td>9</td><td>Ioanna Zazopoulou</td><td>UN Women ‍️</td><td>Argentina</td></tr><tr><td>10</td><td>Isidoros Ximitoudis</td><td>NATO ️</td><td>Albania</td></tr><tr><td>11</td><td>Maria Agiannidou</td><td>UN Women ‍️</td><td>Argentina</td></tr><tr><td>12</td><td>Maria Karapapa</td><td>Economic & Social Council</td><td>Argentina</td></tr><tr><td>13</td><td>Maria Pana</td><td>Historical Crisis Committee</td><td>The City State of Rhodes</td></tr><tr><td>14</td><td>Marios Moutaftsidis</td><td>Security Council</td><td>Argentina</td></tr><tr><td>15</td><td>Michail Moschakos</td><td>UNESCO</td><td>Argentina</td></tr><tr><td>16</td><td>Myrto Graikou</td><td>UN Environment Programme</td><td>Argentina</td></tr><tr><td>17</td><td>Myrto Panagiotidou</td><td>UNESCO</td><td>Italy</td></tr><tr><td>18</td><td>Triantafyllos Savvas</td><td>Security Council</td><td>Italy</td></tr></table>
+
+    <h2>Pinewood</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> nan | nan<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Kleoniki Kipourou</td><td>Economic & Social Council</td><td>Greece</td></tr></table>
+
+    <h2>St. Paul Private School</h2>
+    <div class='advisors'><strong>Advisor 1:</strong> nan | nan<br><strong>Advisor 2:</strong> nan | nan</div>
+    <table><tr><th>#</th><th>Delegate Name</th><th>Committee</th><th>Country</th></tr><tr><td>1</td><td>Sophia Xanthopoulou</td><td>UN Women ‍️</td><td>Greece</td></tr></table>
+  </div>
+
+  <script>
+    // 1. Data Parsing
+    const rawDataContainer = document.getElementById('raw-data-source');
+    const schools = rawDataContainer.querySelectorAll('h2');
+    let delegates = [];
+    let schoolsData = []; 
+
+    schools.forEach(schoolHeader => {
+      const schoolName = schoolHeader.textContent;
+      const advisors = schoolHeader.nextElementSibling.outerHTML; 
+      const table = schoolHeader.nextElementSibling.nextElementSibling;
+      
+      schoolsData.push({
+        name: schoolName,
+        html: `<h2 class="group-header">${schoolName}</h2><div class="advisors-box">${advisors.replace('class="advisors"','')}</div>${table.outerHTML}`
+      });
+
+      const rows = table.querySelectorAll('tr');
+      rows.forEach((row, index) => {
+        if (index === 0) return; // skip header
+        const cells = row.querySelectorAll('td');
+        if (cells.length > 0) {
+            delegates.push({
+                name: cells[1].textContent,
+                committee: cells[2].textContent,
+                country: cells[3].textContent,
+                school: schoolName,
+                advisors: advisors
+            });
+        }
+      });
     });
-    collapseAllBtn.addEventListener('click', () => {
-      document.querySelectorAll('details').forEach(d => d.open = false);
+
+    // 2. Helper Logic for "GA" View
+    
+    // Finds the most frequent country assigned to a school (ignoring Historical/NATO)
+    function getSchoolMajorityCountry(schoolName) {
+      // Filter delegates for this school, excluding NATO and Historical for the count
+      const validDelegates = delegates.filter(d => 
+        d.school === schoolName && 
+        d.committee !== 'Historical Crisis Committee' && 
+        !d.committee.includes('NATO')
+      );
+
+      if (validDelegates.length === 0) return 'Unassigned';
+
+      // Count occurrences
+      const counts = {};
+      validDelegates.forEach(d => {
+        counts[d.country] = (counts[d.country] || 0) + 1;
+      });
+
+      // Find winner
+      let maxCount = 0;
+      let majorityCountry = 'Unassigned';
+      for (const [country, count] of Object.entries(counts)) {
+        if (count > maxCount) {
+          maxCount = count;
+          majorityCountry = country;
+        } else if (count === maxCount) {
+           // In case of tie, we stick with the first one found (alphabetical usually due to processing order)
+           // or we could prioritize specific countries. For now, simple majority wins.
+        }
+      }
+      return majorityCountry;
+    }
+
+    // 3. Render Functions
+    function renderSchoolView() {
+      const container = document.getElementById('school-content');
+      container.innerHTML = schoolsData.map(s => s.html).join('');
+    }
+
+    // Generic grouping function
+    function renderGroupedView(groupByField, containerId, dataSet = null) {
+      const container = document.getElementById(containerId);
+      const dataToUse = dataSet || delegates;
+      
+      // Sort delegates by the field
+      dataToUse.sort((a, b) => a[groupByField].localeCompare(b[groupByField]));
+      
+      // Group them
+      const groups = {};
+      dataToUse.forEach(d => {
+        const key = d[groupByField];
+        if (!groups[key]) groups[key] = [];
+        groups[key].push(d);
+      });
+
+      let html = '';
+      const sortedKeys = Object.keys(groups).sort();
+
+      sortedKeys.forEach(key => {
+        html += `<h2 class="group-header">${key}</h2>`;
+        html += `<table>
+          <thead>
+            <tr>
+              <th>Delegate Name</th>
+              <th>${groupByField === 'committee' ? 'Country' : 'Committee'}</th>
+              <th>School</th>
+            </tr>
+          </thead>
+          <tbody>`;
+        
+        groups[key].forEach(d => {
+          html += `<tr>
+            <td>${d.name}</td>
+            <td>${groupByField === 'committee' ? d.country : d.committee}</td>
+            <td>${d.school}</td>
+          </tr>`;
+        });
+        
+        html += `</tbody></table>`;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function renderGAView() {
+      // 1. Filter out NATO
+      let gaDelegates = delegates.filter(d => !d.committee.includes('NATO'));
+
+      // 2. Transform Historical Delegates
+      // We map over them and replace 'country' if they are Historical
+      gaDelegates = gaDelegates.map(d => {
+        if (d.committee === 'Historical Crisis Committee') {
+           // Find the school's main country
+           const schoolCountry = getSchoolMajorityCountry(d.school);
+           // Return a new object so we don't mutate the original data
+           return {
+             ...d,
+             country: schoolCountry // Override the historical state with the school's country
+           };
+        }
+        return d;
+      });
+
+      // 3. Render using the generic grouper, filtering by 'country'
+      renderGroupedView('country', 'ga-content', gaDelegates);
+    }
+
+    // 4. UI Logic
+    function switchView(viewName) {
+      // Hide all sections
+      document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+
+      // Show selected
+      document.getElementById(`view-${viewName}`).classList.add('active');
+      document.getElementById(`btn-${viewName}`).classList.add('active');
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSchoolView();
+      renderGroupedView('committee', 'committee-content');
+      renderGroupedView('country', 'country-content');
+      renderGAView(); // Pre-calculate GA view
     });
-    printBtn.addEventListener('click', () => window.print());
   </script>
 </body>
 </html>
