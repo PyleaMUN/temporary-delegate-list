@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyleaMUN General Assembly Study Guide</title>
+  <style>
+    :root {
+      --bg: #E8EAE6;
+      --paper: #e0f7fa;
+      --ink: #333;
+      --brand: #005b63;
+      --accent: #00b4a0;
+      --alert: #d32f2f;
+      --alert-bg: #ffcdd2;
+    }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    
+    /* Letterhead & Logo */
+    .letterhead { display:flex; justify-content:space-between; align-items:center; background-color:#D6DBD2; border-bottom:2px solid #444; padding:10px 20px; min-height:100px; flex-wrap:wrap; }
+    .address, .contact { width:30%; font-size:0.9rem; }
+    .contact { display:flex; flex-direction:column; align-items:flex-end; }
+    .logo-container { width:120px; text-align:center; }
+    
+    /* LOGO UPDATE: mix-blend-mode: multiply makes the white background transparent */
+    .logo { 
+      width:120px; 
+      height:auto; 
+      display:block; 
+      mix-blend-mode: multiply; 
+    }
+    
+    .letterhead a { color:#0066cc; text-decoration:none; }
+
+    main { padding: 2rem 1rem 4rem; max-width: 1100px; margin: 0 auto; }
+    h1 { text-align:center; color:var(--brand); margin-top:1rem; margin-bottom: 0.5rem; }
+    h2.subtitle { text-align:center; font-size: 1.1rem; color: #555; margin-bottom: 1.5rem; font-weight: normal; font-style: italic; }
+    
+    .container { background: var(--paper); padding: 1.25rem; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+
+    /* Controls */
+    .controls { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin: 1rem 0 1.25rem; }
+    button { border:none; border-radius:32px; padding:.65rem 1rem; font-size:0.95rem; cursor:pointer; background:var(--accent); color:#fff; }
+    button.secondary { background:#1e88e5; }
+    button.ghost { background:transparent; border:2px solid var(--accent); color:var(--accent); }
+
+    /* Collapsibles */
+    .toc { background:#fff; border-radius:12px; padding: .75rem 1rem; margin-bottom:1rem; border:1px solid #cfe8ea; }
+    .toc h2 { margin:.25rem 0 .5rem; font-size:1.1rem; color:#00796b; }
+    .toc a { display:inline-block; margin:.15rem .5rem .15rem 0; color:#0066cc; text-decoration:none; }
+
+    details { background:#fff; border:1px solid #cfe8ea; border-radius:12px; margin:.75rem 0; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+    summary { cursor:pointer; padding: .9rem 1rem; font-weight:600; color:#00796b; list-style:none; }
+    summary::-webkit-details-marker { display:none; }
+    .chev { transition: transform .25s ease; display:inline-block; margin-right:.25rem; }
+    details[open] .chev { transform: rotate(90deg); }
+    .content { padding: 0 1rem 1rem; }
+    
+    /* TEXT ALIGNMENT UPDATE: Justified text */
+    .content p, .content li { 
+      line-height: 1.6; 
+      margin-bottom: 1rem; 
+      text-align: justify; 
+    }
+    
+    .content h3 { color: var(--brand); margin-top: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; text-align: left; }
+    .content ul { margin-bottom: 1rem; padding-left: 1.5rem; }
+    .content li { margin-bottom: 0.5rem; line-height: 1.5; }
+
+    /* Special Procedural Box */
+    .procedural-box {
+      border: 2px solid var(--brand);
+      background-color: #f1f8e9;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+
+    /* Nice anchors */
+    .anchor { scroll-margin-top: 110px; }
+
+    /* Print */
+    @media print {
+      .controls, .toc { display:none !important; }
+      details { border:none; box-shadow:none; }
+      summary { padding:0; color:inherit; }
+      .content { padding:0; }
+      details[open] .content { display: block; }
+    }
+
+    /* Overrides per user request to match previous guide style */
+    body, html, .content, .procedural-box { font-family: Georgia, 'Times New Roman', Times, serif !important; }
+    
+    /* Tables */
+    table.data { width:100%; border-collapse:collapse; background:#fff; border:1px solid #cfe8ea; border-radius:12px; overflow:hidden; margin-top: 1rem; margin-bottom: 1rem; }
+    table.data th, table.data td { border:1px solid #cfe8ea; padding:.55rem .7rem; vertical-align:top; text-align: left; }
+    table.data th { background:#f0fbfd; color:#00796b; text-align:left; }
+    table.data tbody tr:nth-child(even) { background:#f8ffff; }
+    
+    /* Bibliography Styles */
+    .sources ul { margin:.25rem 0 1rem 1.25rem; word-break: break-all; }
+    .sources a { color:#0066cc; text-decoration:none; }
+    .sources a:hover { text-decoration:underline; }
+    
+    /* Bold emphasis */
+    .content strong { font-weight:700; color: #000; }
+  </style>
+</head>
+<body>
+  <div class="letterhead">
+    <div class="address"><strong>4 Isminis Str.</strong><br>Pylaia, Thessaloniki - 55535</div>
+    <div class="logo-container">
+      <img src="pyleaMUNfinallogo.png" alt="PyleaMUN Logo" class="logo"/>
+    </div>
+    <div class="contact">
+      <div>📞 +30 2310329199</div>
+      <div>📧 <a href="mailto:pyleamun@gmail.com">pyleamun@gmail.com</a></div>
+      <div>🌐 <a href="#">pyleamun.github.io</a></div>
+    </div>
+  </div>
+
+  <main>
+    <h1>PYLEAMUN GENERAL ASSEMBLY</h1>
+    <h2 class="subtitle">Human Rights or Cultural Relativism: Can Universal Norms Truly Exist?</h2>
+    
+    <div class="container">
+      <div class="controls">
+        <button id="expandAll">Expand all</button>
+        <button id="collapseAll" class="secondary">Collapse all</button>
+        <button id="printPage" class="ghost">Print</button>
+      </div>
+
+      <nav class="toc">
+        <h2>Quick Navigation</h2>
+        <a href="#sec1">1. Introduction to the Topic</a>
+        <a href="#sec2">2. Definition of Key Terms</a>
+        <a href="#sec3">3. Historical Background & Timeline</a>
+        <a href="#sec4">4. Current Situation</a>
+        <a href="#sec5">5. Previous Attempts to Solve the Issue</a>
+        <a href="#sec6">6. Possible Solutions</a>
+        <a href="#sec7">7. Major Parties Involved</a>
+        <a href="#sources">8. Bibliography</a>
+      </nav>
+
+      <details id="sec1" class="anchor">
+        <summary><span class="chev">▸</span>1. Introduction to the Topic</summary>
+        <div class="content">
+          <p>Since the end of World War II and the creation of the United Nations in 1945, universal human rights have been a central goal of international law. However, the idea that human rights should apply everywhere remains highly controversial. Many governments, analysts, and advocates argue that enforcing human rights globally can act as a form of ideological dominance.</p>
+          <p>They claim that Western liberal values are being imposed on non-Western societies, conflicting with local policies, traditions, and cultural practices, and potentially limiting cultural diversity. Debate also exists within the human-rights community. Some argue that human rights must be adapted to local contexts, while others worry that such flexibility could excuse oppression.</p>
+          <p>During the drafting of the Universal Declaration of Human Rights (UDHR) in 1947, the American Anthropological Association warned that the document reflected mainly Western values. They argued that cultural standards differ, and that what counts as a “right” in one society may be seen as harmful in another.</p>
+          <p>Despite these tensions, many countries have taken action to promote peace, dignity, and equality. The UDHR—created by states with diverse political and cultural backgrounds—became a historic milestone and inspired numerous later human-rights treaties, including the ASEAN (Bangkok) Declaration, the Vienna Declaration and Programme of Action, and the European Convention on Human Rights.</p>
+          <p>This ongoing ideological debate raises key questions: Can human rights be truly universal, or do they reflect the values of those who draft them? Delegates are encouraged to explore whether universal human rights and cultural diversity can coexist.</p>
+        </div>
+      </details>
+
+      <details id="sec2" class="anchor">
+        <summary><span class="chev">▸</span>2. Definition of Key Terms</summary>
+        <div class="content">
+          <p><strong>Universal Human Rights:</strong> Human rights are some fundamental rights that every person has simply by virtue of being human, regardless of nationality, culture or identity. The Universal Declaration of Human Rights (UDHR) outlines 30 articles that define fundamental human rights and freedoms.</p>
+          
+          <p><strong>Cultural Relativism:</strong> The belief that each culture is diverse and therefore ethical practices differ among them, and what is considered right in one culture may be considered wrong in another. The indication of cultural relativism is that no society is superior to another; they are solely different.</p>
+          
+          <p><strong>Western Values (regarding human rights):</strong> When human rights are not applied universally, but are rather used selectively by Western countries to exert pressure on others, and protect their own strategic interests – turning a universal ideal into a tool for maintaining global influence. Such values are characterized as culturally prejudiced, as they often prioritize individual rights over collective or community-based values found in many non-Western societies.</p>
+          
+          <p><strong>Universal Declaration of Human Rights (UDHR):</strong> A foundational 1948 UN document outlining rights considered universal and inalienable.</p>
+          
+          <p><strong>Sovereignty:</strong> The authority of a state to govern itself without external interference.</p>
+          
+          <p><strong>Collective Rights:</strong> Rights held by a group rather than by individuals (e.g., Indigenous cultural rights).</p>
+          
+          <p><strong>Universal Norms:</strong> Ethical guidelines and principles of behavior that are considered to be widely accepted and applicable to all societies and cultures. In the context of human rights, this term expresses the belief that there are certain moral and legal rights that should be respected by everyone and everywhere.</p>
+          
+          <p><strong>Segregation:</strong> The act of deliberately separating people based on their race, color, gender, language, religion, nationality or ethnic origin without an objective and reasonable justification.</p>
+          
+          <p><strong>Apartheid:</strong> The implementation of a system in which the racial segregation of one racial group, which is deprived of its political and civil rights, is legalized. Such systems were found in South Africa in the 20th century and aimed to separate the minority white population from their black counterparts. Nowadays, apartheid is a crime against humanity, punishable under the Rome Statute of the international criminal court.</p>
+        </div>
+      </details>
+
+      <details id="sec3" class="anchor">
+        <summary><span class="chev">▸</span>3. Historical Background & Timeline</summary>
+        <div class="content">
+          <h3>Historical Overview</h3>
+          <p>After the horrors of World War II, the international community sought to create a framework that would protect individuals from discrimination, violence, and injustice. This effort resulted in the UDHR, which became the basis for international human rights law. However, the UDHR was mainly drafted by a small group of states, many of which were Western, raising questions about its cultural representation.</p>
+          <p>During the 1960s–1990s, newly independent nations in Africa and Asia began challenging the universality of rights, arguing that some aspects—especially those related to family, gender roles, or political systems—did not align with their cultural values. The 1993 Vienna Declaration attempted to bridge the divide, stating that all human rights are universal but must be considered in their cultural and national contexts.</p>
+          <p>Today, controversies continue over issues such as women's rights, LGBTQ+ rights, freedom of expression, and the rights of Indigenous peoples. Some governments argue that enforcing international standards can threaten cultural traditions or political stability, while others claim that cultural relativism is sometimes used as an excuse to justify human rights violations.</p>
+          
+          <h3>Timeline of Events</h3>
+          <table class="data">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description of Events</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>10 Dec 1948</strong></td>
+                <td>The UN General Assembly adopted the <strong>Universal Declaration of Human Rights (UDHR)</strong>. It set out a broad catalogue of civil, political, economic, social and cultural rights and became the normative reference point for later binding instruments.</td>
+              </tr>
+              <tr>
+                <td><strong>1966</strong></td>
+                <td>States moved from declaration to treaty law with the <strong>ICCPR</strong> and <strong>ICESCR</strong>. Together with the UDHR, these form the “International Bill of Human Rights.”</td>
+              </tr>
+              <tr>
+                <td><strong>1981 / 1986</strong></td>
+                <td><strong>The African Charter on Human and Peoples’ Rights</strong> adopted (entered into force 1986). It emphasizes duties and collective rights as well as individual rights.</td>
+              </tr>
+              <tr>
+                <td><strong>Late 80s–90s</strong></td>
+                <td><strong>The "Asian Values" Debate:</strong> A prominent intellectual and political debate asserting that some societies prioritize community and social harmony over individual political liberties.</td>
+              </tr>
+              <tr>
+                <td><strong>1990</strong></td>
+                <td><strong>Cairo Declaration on Human Rights in Islam:</strong> A statement by OIC states framing rights explicitly within an Islamic-law perspective.</td>
+              </tr>
+              <tr>
+                <td><strong>1993</strong></td>
+                <td><strong>Bangkok Declaration:</strong> Representing the viewpoint of Asian states before the World Conference.</td>
+              </tr>
+              <tr>
+                <td><strong>1993</strong></td>
+                <td><strong>World Conference on Human Rights (Vienna):</strong> Produced the Vienna Declaration, explicitly reaffirming universality while acknowledging national and regional particularities.</td>
+              </tr>
+              <tr>
+                <td><strong>2004</strong></td>
+                <td>Establishment of the <strong>African Court on Human and Peoples’ Rights</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>2006</strong></td>
+                <td>UN Commission on Human Rights replaced by the <strong>UN Human Rights Council</strong>. Mechanisms like the Universal Periodic Review (UPR) were intended to make scrutiny more universal.</td>
+              </tr>
+              <tr>
+                <td><strong>2012</strong></td>
+                <td><strong>ASEAN Human Rights Declaration:</strong> Attempts to situate UDHR norms in regional political contexts.</td>
+              </tr>
+              <tr>
+                <td><strong>2018</strong></td>
+                <td><strong>UNGA Report A/73/227:</strong> Argues that "cultural rights are not a justification for violations of human rights."</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details id="sec4" class="anchor">
+        <summary><span class="chev">▸</span>4. Current Situation</summary>
+        <div class="content">
+          <p>In the contemporary international arena, the tension between universal human rights and cultural relativism remains acute. In early 2025, the U.N. High Commissioner for Human Rights, Volker Türk, warned that “the global consensus on human rights is crumbling.”</p>
+          <p>Several states continue to push back against what they see as Western-imposed norms. For example, China has rejected Western-led reform recommendations, framing them as ideological interference. Meanwhile, international legal scholars caution that the dominant human rights regime still carries deep Western philosophical roots, a legacy that developing nations are challenging.</p>
+          
+          <h3>Key Areas of Conflict</h3>
+          <ul>
+            <li><strong>Women’s Rights in MENA Regions:</strong> Governments argue cultural/religious values should guide laws on marriage, dress, and inheritance. Critics argue these limit equality.</li>
+            <li><strong>LGBTQ+ Rights in Africa and Asia:</strong> Many countries criminalize same-sex relationships based on cultural norms; international organizations claim this violates fundamental freedoms.</li>
+            <li><strong>Indigenous Cultural Rights in the Americas:</strong> Indigenous communities demand protection for traditions and land, arguing universalist policies ignore unique cultural identities.</li>
+            <li><strong>Asian Values Debate:</strong> Some East Asian governments argue that community harmony takes priority over individual freedoms.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details id="sec5" class="anchor">
+        <summary><span class="chev">▸</span>5. Previous Attempts to Solve the Issue</summary>
+        <div class="content">
+           <p>Numerous efforts have been made to bridge the gap between universal human rights and cultural relativism. However, implementation often faces criticism for overlooking local contexts or interfering with cultural practices.</p>
+
+           <h3>The Vienna Declaration and Programme of Action (1993)</h3>
+           <p>Adopted by 171 UN member states, this declaration reaffirmed the universality of human rights while recognizing the importance of cultural diversity. A major outcome was the creation of the <strong>UN Office of the High Commissioner for Human Rights (OHCHR)</strong>.</p>
+           
+           <h3>The Bangkok Declaration (1993)</h3>
+           <p>Adopted by 34 Asian countries, it stressed that human rights must be interpreted with respect to regional, national, historical, cultural, and religious contexts. It criticized the imposition of external values and emphasized national sovereignty.</p>
+
+           <h3>The African Charter on Human and Peoples’ Rights (1981)</h3>
+           <p>Provides a regionally adapted framework combining individual rights with communal values and duties. Enforcement improved with the establishment of the African Court on Human and Peoples’ Rights in 2004, though challenges in implementation persist.</p>
+           
+           <h3>Pre-UDHR Consultation (1947)</h3>
+           <p>UNESCO conducted a multi-cultural survey including ideas from Chinese, African, Islamic, and Indian cultures to avoid a purely Western framing for the UDHR. While not resolving every concern, it was a stepping stone for universal norms.</p>
+        </div>
+      </details>
+
+      <details id="sec6" class="anchor">
+        <summary><span class="chev">▸</span>6. Possible Solutions</summary>
+        <div class="content">
+          <h3>Strengthened Intercultural Dialogue</h3>
+          <p>Fostering global conversations between nations with different perspectives is crucial. Conferences where leaders exchange perspectives respectfully can help find feasible solutions that bridge the gap between universal rights and local practices.</p>
+
+          <h3>Regional Human Rights Frameworks</h3>
+          <p>Encouraging the creation of human rights charters at regional levels (like ASEAN or the African Union) allows for legally binding instruments tailored to regional realities, provided they comply with core international norms. This allows for adjustment to regional cultural/religious norms while implementing basic rights.</p>
+
+          <h3>Capacity Building and Education</h3>
+          <p>Educational and Institutional Capacity-Building could support the inclusion of human rights in national curricula. Civil society initiatives that bridge local customs with global rights can gradually cultivate respect and understanding.</p>
+
+          <h3>Monitoring Misuse of Cultural Relativism</h3>
+          <p>Effective monitoring mechanisms must ensure that states do not exploit "cultural relativism" to violate fundamental rights. Independent bodies should investigate and report instances where human rights are encroached upon under the guise of culture.</p>
+        </div>
+      </details>
+      
+      <details id="sec7" class="anchor">
+        <summary><span class="chev">▸</span>7. Major Parties Involved</summary>
+        <div class="content">
+          <table class="data">
+            <thead>
+              <tr>
+                <th>Party</th>
+                <th>Role & Perspective</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>The United States</strong></td>
+                <td>Encourages democracy and civil liberties globally, playing a major role in the UDHR and ending Apartheid. However, it faces criticism for internal rights issues (racial discrimination) and military interventions.</td>
+              </tr>
+              <tr>
+                <td><strong>China</strong></td>
+                <td>Emphasizes sovereignty, non-interference, and economic development over political rights. Faces criticism for restrictions on free speech and treatment of minorities (Uyghurs, Tibetans).</td>
+              </tr>
+              <tr>
+                <td><strong>Sweden</strong></td>
+                <td>A major contributor to promoting rights domestically (strong welfare, gender equality) and abroad. Supports conflict resolution, refugee protection, and elimination of poverty via the UN.</td>
+              </tr>
+              <tr>
+                <td><strong>The United Nations</strong></td>
+                <td>The primary promoter/protector of rights via the Human Rights Council and OHCHR. Faces criticism for bias or uneven enforcement.</td>
+              </tr>
+              <tr>
+                <td><strong>Amnesty International</strong></td>
+                <td>Grassroots NGO operating in 150+ countries. Exerts pressure on governments via petitions and protests regarding free speech, torture, and the death penalty.</td>
+              </tr>
+              <tr>
+                <td><strong>Human Rights Watch (HRW)</strong></td>
+                <td>Research-driven organization established in 1978. Investigates abuses by governments/corporations and publishes detailed reports to influence policymakers.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details id="sources" class="anchor">
+        <summary><span class="chev">▸</span>8. Bibliography</summary>
+        <div class="content">
+          <div class="sources">
+            <h3>Online Resources</h3>
+            <ul>
+              <li><a href="https://www.un.org/en/about-us/universal-declaration-of-human-rights" target="_blank">UN: Universal Declaration of Human Rights</a></li>
+              <li><a href="https://www.simplypsychology.org/cultural-relativism.html" target="_blank">Simply Psychology: Cultural Relativism</a></li>
+              <li><a href="https://esthinktank.com/2025/05/13/human-rights-merely-a-western-perspective/" target="_blank">ES Think Tank: Human Rights - A Western Perspective?</a></li>
+              <li><a href="https://www.law.cornell.edu/wex/segregation" target="_blank">Cornell Law: Segregation</a></li>
+              <li><a href="https://www.law.cornell.edu/wex/apartheid" target="_blank">Cornell Law: Apartheid</a></li>
+              <li><a href="https://humanrights.americananthro.org/1947-statement-on-human-rights/" target="_blank">American Anthropological Association: 1947 Statement</a></li>
+              <li><a href="https://plato.stanford.edu/index.html" target="_blank">Stanford Encyclopedia of Philosophy</a></li>
+            </ul>
+
+            <h3>Official Documents</h3>
+            <ul>
+              <li>Universal Declaration of Human Rights, UNGA Res. 217 A (III), 10 Dec 1948.</li>
+              <li>International Covenant on Civil and Political Rights (ICCPR), 1966.</li>
+              <li>Vienna Declaration and Programme of Action, 1993.</li>
+              <li>African Charter on Human and Peoples’ Rights (Banjul Charter), 1981.</li>
+              <li>Cairo Declaration on Human Rights in Islam, 1990 (OIC).</li>
+              <li>ASEAN Human Rights Declaration (2012).</li>
+            </ul>
+            
+            <h3>Books & Academic Sources</h3>
+            <ul>
+              <li>Donnelly, Jack. <em>Universal Human Rights in Theory and Practice.</em> Cornell University Press, 2013.</li>
+              <li>Donnelly, Jack. <em>Cultural Relativism and Universal Human Rights</em>, 6(4) HUM. RTS. Q. 400 (1984).</li>
+              <li>Pollis, Adamantia & Schwab, Peter (eds.). <em>Human Rights: Cultural and Ideological Perspectives.</em> Praeger, 1979.</li>
+              <li>Merry, Sally Engle. <em>Human Rights and Gender Violence.</em> University of Chicago Press, 2006.</li>
+              <li>Sen, Amartya. <em>Human Rights and Asian Values.</em> New Republic, 1997.</li>
+              <li>Abdullahi An-Na’im – <em>Cultural Transformation and Human Rights in Africa</em> (2013).</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </main>
+
+  <script>
+    const expandAllBtn = document.getElementById('expandAll');
+    const collapseAllBtn = document.getElementById('collapseAll');
+    const printBtn = document.getElementById('printPage');
+
+    expandAllBtn.addEventListener('click', () => {
+      document.querySelectorAll('details').forEach(d => d.open = true);
+    });
+    collapseAllBtn.addEventListener('click', () => {
+      document.querySelectorAll('details').forEach(d => d.open = false);
+    });
+    printBtn.addEventListener('click', () => window.print());
+  </script>
+</body>
+</html>
