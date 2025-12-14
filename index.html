@@ -93,6 +93,10 @@
     table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 0.95rem; }
     th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
     th { background-color: #005b63; color: white; }
+    
+    /* Specific width for number column */
+    th:first-child, td:first-child { width: 40px; text-align: center; }
+
     tr:nth-child(even) { background-color: #f9f9f9; }
 
     /* --- PRINT STYLES --- */
@@ -297,6 +301,20 @@
     let delegates = [];
     let schoolsData = []; 
 
+    // --- HELPER TO CLEAN COMMITTEE NAMES ---
+    function normalizeCommitteeName(rawName) {
+      let name = rawName.trim();
+      const lower = name.toLowerCase();
+
+      if (lower.includes('un women')) {
+          return 'UN Women';
+      }
+      if (lower.includes('nato')) {
+          return 'NATO';
+      }
+      return name;
+    }
+
     schools.forEach(schoolHeader => {
       const schoolName = schoolHeader.textContent;
       const advisors = schoolHeader.nextElementSibling.outerHTML; 
@@ -312,9 +330,14 @@
         if (index === 0) return; // skip header
         const cells = row.querySelectorAll('td');
         if (cells.length > 0) {
+            
+            // Normalize committee name here
+            const rawCommittee = cells[2].textContent;
+            const cleanCommittee = normalizeCommitteeName(rawCommittee);
+
             delegates.push({
                 name: cells[1].textContent,
-                committee: cells[2].textContent,
+                committee: cleanCommittee,
                 country: cells[3].textContent,
                 school: schoolName,
                 advisors: advisors
@@ -324,10 +347,7 @@
     });
 
     // 2. Helper Logic for "GA" View
-    
-    // Finds the most frequent country assigned to a school (ignoring Historical/NATO)
     function getSchoolMajorityCountry(schoolName) {
-      // Filter delegates for this school, excluding NATO and Historical for the count
       const validDelegates = delegates.filter(d => 
         d.school === schoolName && 
         d.committee !== 'Historical Crisis Committee' && 
@@ -336,22 +356,17 @@
 
       if (validDelegates.length === 0) return 'Unassigned';
 
-      // Count occurrences
       const counts = {};
       validDelegates.forEach(d => {
         counts[d.country] = (counts[d.country] || 0) + 1;
       });
 
-      // Find winner
       let maxCount = 0;
       let majorityCountry = 'Unassigned';
       for (const [country, count] of Object.entries(counts)) {
         if (count > maxCount) {
           maxCount = count;
           majorityCountry = country;
-        } else if (count === maxCount) {
-           // In case of tie, we stick with the first one found (alphabetical usually due to processing order)
-           // or we could prioritize specific countries. For now, simple majority wins.
         }
       }
       return majorityCountry;
@@ -363,15 +378,13 @@
       container.innerHTML = schoolsData.map(s => s.html).join('');
     }
 
-    // Generic grouping function
+    // Generic grouping function with NUMBERING
     function renderGroupedView(groupByField, containerId, dataSet = null) {
       const container = document.getElementById(containerId);
       const dataToUse = dataSet || delegates;
       
-      // Sort delegates by the field
       dataToUse.sort((a, b) => a[groupByField].localeCompare(b[groupByField]));
       
-      // Group them
       const groups = {};
       dataToUse.forEach(d => {
         const key = d[groupByField];
@@ -387,16 +400,17 @@
         html += `<table>
           <thead>
             <tr>
-              <th>Delegate Name</th>
+              <th>#</th> <th>Delegate Name</th>
               <th>${groupByField === 'committee' ? 'Country' : 'Committee'}</th>
               <th>School</th>
             </tr>
           </thead>
           <tbody>`;
         
-        groups[key].forEach(d => {
+        // Loop with index to provide numbering
+        groups[key].forEach((d, index) => {
           html += `<tr>
-            <td>${d.name}</td>
+            <td>${index + 1}</td> <td>${d.name}</td>
             <td>${groupByField === 'committee' ? d.country : d.committee}</td>
             <td>${d.school}</td>
           </tr>`;
@@ -409,35 +423,28 @@
     }
 
     function renderGAView() {
-      // 1. Filter out NATO
+      // Filter based on normalized names
       let gaDelegates = delegates.filter(d => !d.committee.includes('NATO'));
 
-      // 2. Transform Historical Delegates
-      // We map over them and replace 'country' if they are Historical
       gaDelegates = gaDelegates.map(d => {
         if (d.committee === 'Historical Crisis Committee') {
-           // Find the school's main country
            const schoolCountry = getSchoolMajorityCountry(d.school);
-           // Return a new object so we don't mutate the original data
            return {
              ...d,
-             country: schoolCountry // Override the historical state with the school's country
+             country: schoolCountry 
            };
         }
         return d;
       });
 
-      // 3. Render using the generic grouper, filtering by 'country'
       renderGroupedView('country', 'ga-content', gaDelegates);
     }
 
     // 4. UI Logic
     function switchView(viewName) {
-      // Hide all sections
       document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
 
-      // Show selected
       document.getElementById(`view-${viewName}`).classList.add('active');
       document.getElementById(`btn-${viewName}`).classList.add('active');
     }
@@ -447,7 +454,7 @@
       renderSchoolView();
       renderGroupedView('committee', 'committee-content');
       renderGroupedView('country', 'country-content');
-      renderGAView(); // Pre-calculate GA view
+      renderGAView(); 
     });
   </script>
 </body>
